@@ -1,0 +1,19 @@
+.page {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
+.pick {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: center;
+    margin: 10%;
+}
+html {
+    padding: 0px;
+}
+.topbar {
+    display: flex;
+    justify-content: space-evenly;
+}
