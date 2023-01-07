@@ -1,0 +1,24 @@
+body{
+    background: #dbfbff;
+    min-height: 100%;
+    padding: 5px;
+}
+#maindiv{
+    margin:auto;
+    background: rgb(189, 189, 189);
+    width: 60%;
+    border-radius: 5px;
+    border: 2px solid black;
+}
+#title{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 40px;
+    font-weight: bolder;
+    margin: 5px;
+}
+#subtitle{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 5px;
+}
