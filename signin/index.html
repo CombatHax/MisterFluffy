@@ -22,21 +22,26 @@
             return JSON.parse(jsonPayload);
         }
 
-        function googleSignIn(info) {
+        function googleSignUp(info) {
             stuff = parseJwt(info.credential);
+            let uuid = crypto.randomUUID();
             fetch(ip, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    "type": "signin",
+                    "type": "signup",
                     "email": stuff['email'],
                     "name": stuff['name'],
-                    "image": stuff['picture']
+                    "image": stuff['picture'],
+                    "uuid": uuid
                 })
             })
-            .then(res => console.log(res.json));
+            .then(() => {
+                localStorage.setItem("UUID", uuid);
+                console.log(localStorage.getItem("UUID"));
+            });
         }
     </script>
     <div class="signinbox">
@@ -44,10 +49,9 @@
             data-client_id="120454961400-jbkhbvea7igcrqui9l61i4ibcd6kklue.apps.googleusercontent.com"
             data-context="signin"
             data-ux_mode="popup"
-            data-callback="googleSignIn"
+            data-callback="googleSignUp"
             data-auto_prompt="false">
     </div>
-    
     <div class="g_id_signin"
         data-type="standard"
         data-shape="pill"
