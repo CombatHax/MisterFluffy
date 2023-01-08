@@ -8,9 +8,13 @@
   },
   "author": "",
   "license": "ISC",
+<<<<<<< HEAD
   "type": "module",
   "dependencies": {
     "nodemailer": "^6.8.0",
     "uuid": "^9.0.0"
   }
+=======
+  "type": "module"
+>>>>>>> 82b0aecdd311237ca260d86fb2ee6f3cddfa42b6
 }
