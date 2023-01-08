@@ -25,12 +25,9 @@ body{
 #flex{
     display: flex;
     flex-direction: column;
-<<<<<<< HEAD
 }
 .topbar {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-evenly;
-=======
->>>>>>> 82b0aecdd311237ca260d86fb2ee6f3cddfa42b6
 }
