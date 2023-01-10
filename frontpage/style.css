@@ -22,12 +22,7 @@ body{
     margin: 2px;
     margin-bottom: 2px;
 }
-#flex{
+#main{
     display: flex;
     flex-direction: column;
-}
-.topbar {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-evenly;
 }

@@ -1,0 +1,1 @@
+const login = () => window.location.pathname = "MisterFluffy/signin/index.html"
