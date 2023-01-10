@@ -8,6 +8,7 @@ body{
     width: 20%;
     border-radius: 5px;
     border: 2px solid black;
+    position: relative;
 }
 #title{
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -25,4 +26,16 @@ body{
 #main{
     display: flex;
     flex-direction: column;
+}
+.topbar{
+    display: flex;
+    flex-direction: row;
+}
+#LISI{
+    margin-left: auto;
+}
+.login{
+    height: 100%;
+    width: 100px;
+    border-radius: 0px;
 }
