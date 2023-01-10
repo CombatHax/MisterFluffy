@@ -1,7 +1,8 @@
 body{
     background: #dbfbff;
     min-height: 100%;
-    padding: 5px;
+    padding: 0px;
+    margin: 0px;
 }
 #first_section{
     background: rgb(246, 246, 246);
@@ -9,6 +10,7 @@ body{
     border-radius: 5px;
     border: 2px solid black;
     position: relative;
+    margin: 5px;
 }
 #title{
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -30,12 +32,24 @@ body{
 .topbar{
     display: flex;
     flex-direction: row;
+    background-color: hsl(0, 0%, 0%);
+    pointer-events: auto;
+    align-items:center;
 }
 #LISI{
     margin-left: auto;
 }
 .login{
-    height: 100%;
+    background-color: hsl(180, 27%, 48%);
+    align-items: center;
     width: 100px;
     border-radius: 0px;
+    border-width: 0px;
+    margin: 5px;
+    cursor:pointer;
+}
+#slogan{
+    margin: auto;
+    color: blue;
+    background-color: white;
 }
