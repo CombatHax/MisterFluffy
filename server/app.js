@@ -1,21 +1,14 @@
 import { createServer } from 'http';
 import { readFileSync, writeFileSync } from 'fs';
-import { v4 as uuid } from 'uuid';
 
 const fileTypes = {
     '.html': 'text/html',
     '.js': 'text/javascript',
-    '.css': 'text/css'
+    '.css': 'text/css',
+    '.json': 'application/json'
 }
 
-const getPerson = id => {
-    const data = JSON.parse(readFileSync("datastealer.json"));
-    for(k in data) {
-        if(k === id) {
-            return data[k];
-        }
-    }
-}
+const ROOT_FILE = "/frontpage/index.html"
 
 const server = createServer((req, res) => {
     switch(req.method) {
@@ -24,8 +17,16 @@ const server = createServer((req, res) => {
             if(fname.startsWith('/server/')) {
                 res.end();
                 return;
+            } else if(fname.startsWith('/accounts/')) {
+                let url = req.url;
+                const info = JSON.parse(readFileSync("datastealer.json"))[url.slice(url.lastIndexOf('/') + 1)];
+                res.writeHead(200, {
+                    'Content-Length': Buffer.byteLength(JSON.stringify(info)),
+                    'Content-Type': 'application/json'
+                })
+                res.write(JSON.stringify(info));
             }
-            if(fname === '/') fname = '/index.html';
+            if(fname === '/') fname = ROOT_FILE;
             fname = '..' + fname;
             try {
                 res.writeHead(200, {'Content-Type': fileTypes[fileTypes[fname.slice(fname.indexOf('.', 3))]]} | null);
@@ -36,7 +37,6 @@ const server = createServer((req, res) => {
             }
             break;
         case 'POST':
-            console.log("POST");
             let info = '';
             req.on('data', data => {
                 info += data.toString();
@@ -46,9 +46,7 @@ const server = createServer((req, res) => {
                 if(info['type'] === 'signup') {
                     let data = JSON.parse(readFileSync('datastealer.json'));
                     delete info['type'];
-                    delete info['uuid'];
                     data[info['uuid']] = info;
-                    console.log(data);
                     writeFileSync('datastealer.json', JSON.stringify(data));
                 }
             });
@@ -56,4 +54,4 @@ const server = createServer((req, res) => {
     }
     res.end();
 });
-server.listen(3000);
+server.listen(80);

@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel='stylesheet' href='style.css'>
+    <script src='https://accounts.google.com/gsi/client' async defer></script>
+    <script src="../init.js"></script>
     <title>Mister Fluffy | Sign-in</title>
-    <script>
-        const ip = "127.0.0.1:3000"
-    </script>
 </head>
 <body>
     <script>
+        console.log(account);
         function parseJwt(token) {
             var base64Url = token.split('.')[1];
             var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -23,42 +22,42 @@
         }
 
         function googleSignUp(info) {
-            stuff = parseJwt(info.credential);
-            let uuid = crypto.randomUUID();
+            let stuff = parseJwt(info.credential);
+            let uuid = stuff['sub'];
             fetch(ip, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    "type": "signup",
-                    "email": stuff['email'],
-                    "name": stuff['name'],
-                    "image": stuff['picture'],
-                    "uuid": uuid
+                    'type': 'signup',
+                    'email': stuff['email'],
+                    'name': stuff['name'],
+                    'image': stuff['picture'],
+                    'uuid': stuff['sub']
                 })
             })
             .then(() => {
-                localStorage.setItem("UUID", uuid);
-                console.log(localStorage.getItem("UUID"));
+                localStorage.setItem('UUID', uuid);
             });
         }
     </script>
-    <div class="signinbox">
-        <div id="g_id_onload"
-            data-client_id="120454961400-jbkhbvea7igcrqui9l61i4ibcd6kklue.apps.googleusercontent.com"
-            data-context="signin"
-            data-ux_mode="popup"
-            data-callback="googleSignUp"
-            data-auto_prompt="false">
+    <div class='signinbox'>
+        <h1>SIGN IN</h1>
+        <div id='g_id_onload'
+            data-client_id='120454961400-jbkhbvea7igcrqui9l61i4ibcd6kklue.apps.googleusercontent.com'
+            data-context='signin'
+            data-ux_mode='popup'
+            data-callback='googleSignUp'
+            data-auto_prompt='false'>
     </div>
-    <div class="g_id_signin"
-        data-type="standard"
-        data-shape="pill"
-        data-theme="filled_black"
-        data-text="signin"
-        data-size="large"
-        data-logo_alignment="left">
+    <div class='g_id_signin'
+        data-type='standard'
+        data-shape='pill'
+        data-theme='filled_black'
+        data-text='signin'
+        data-size='large'
+        data-logo_alignment='left'>
     </div>
     </div>
 </body>
