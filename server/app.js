@@ -8,9 +8,7 @@ const fileTypes = {
     '.json': 'application/json'
 }
 
-const getPerson = id => {
-    return JSON.parse(readFileSync("datastealer.json"))[id]
-}
+const ROOT_FILE = "/frontpage/index.html"
 
 const server = createServer((req, res) => {
     switch(req.method) {
@@ -28,7 +26,7 @@ const server = createServer((req, res) => {
                 })
                 res.write(JSON.stringify(info));
             }
-            if(fname === '/') fname = '/index.html';
+            if(fname === '/') fname = ROOT_FILE;
             fname = '..' + fname;
             try {
                 res.writeHead(200, {'Content-Type': fileTypes[fileTypes[fname.slice(fname.indexOf('.', 3))]]} | null);
@@ -56,4 +54,4 @@ const server = createServer((req, res) => {
     }
     res.end();
 });
-server.listen(3000);
+server.listen(80);

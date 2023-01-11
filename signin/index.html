@@ -11,6 +11,7 @@
 </head>
 <body>
     <script>
+        console.log(account);
         function parseJwt(token) {
             var base64Url = token.split('.')[1];
             var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -42,6 +43,10 @@
         }
     </script>
     <div class='signinbox'>
+<<<<<<< HEAD
+        <h1>SIGN IN</h1>
+=======
+>>>>>>> f760dfb39db8990fabc2f8bcb695081281bf4cae
         <div id='g_id_onload'
             data-client_id='120454961400-jbkhbvea7igcrqui9l61i4ibcd6kklue.apps.googleusercontent.com'
             data-context='signin'
@@ -51,7 +56,11 @@
     </div>
     <div class='g_id_signin'
         data-type='standard'
+<<<<<<< HEAD
+        data-shape='pill'
+=======
         data-shape='rectangle'
+>>>>>>> f760dfb39db8990fabc2f8bcb695081281bf4cae
         data-theme='filled_black'
         data-text='signin'
         data-size='large'
