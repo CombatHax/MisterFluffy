@@ -1,20 +1,15 @@
 import { createServer } from 'http';
 import { readFileSync, writeFileSync } from 'fs';
-import { v4 as uuid } from 'uuid';
 
 const fileTypes = {
     '.html': 'text/html',
     '.js': 'text/javascript',
-    '.css': 'text/css'
+    '.css': 'text/css',
+    '.json': 'application/json'
 }
 
 const getPerson = id => {
-    const data = JSON.parse(readFileSync("datastealer.json"));
-    for(k in data) {
-        if(k === id) {
-            return data[k];
-        }
-    }
+    return JSON.parse(readFileSync("datastealer.json"))[id]
 }
 
 const server = createServer((req, res) => {
@@ -24,6 +19,14 @@ const server = createServer((req, res) => {
             if(fname.startsWith('/server/')) {
                 res.end();
                 return;
+            } else if(fname.startsWith('/accounts/')) {
+                let url = req.url;
+                const info = JSON.parse(readFileSync("datastealer.json"))[url.slice(url.lastIndexOf('/') + 1)];
+                res.writeHead(200, {
+                    'Content-Length': Buffer.byteLength(JSON.stringify(info)),
+                    'Content-Type': 'application/json'
+                })
+                res.write(JSON.stringify(info));
             }
             if(fname === '/') fname = '/index.html';
             fname = '..' + fname;
@@ -36,7 +39,6 @@ const server = createServer((req, res) => {
             }
             break;
         case 'POST':
-            console.log("POST");
             let info = '';
             req.on('data', data => {
                 info += data.toString();
@@ -46,9 +48,7 @@ const server = createServer((req, res) => {
                 if(info['type'] === 'signup') {
                     let data = JSON.parse(readFileSync('datastealer.json'));
                     delete info['type'];
-                    delete info['uuid'];
                     data[info['uuid']] = info;
-                    console.log(data);
                     writeFileSync('datastealer.json', JSON.stringify(data));
                 }
             });
