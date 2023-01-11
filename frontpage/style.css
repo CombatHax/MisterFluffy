@@ -45,6 +45,7 @@ body{
     margin: 5px;
     background-color: white;
     border-radius: 5px;
+    border-width: 0px;
     padding: 2px;
     cursor: pointer;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
