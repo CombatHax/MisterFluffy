@@ -32,7 +32,7 @@ body{
 .topbar{
     display: flex;
     flex-direction: row;
-    background-color: hsl(0, 0%, 0%);
+    background-color: hsl(146, 11%, 28%);
     pointer-events: auto;
     align-items:center;
 }
@@ -48,8 +48,12 @@ body{
     margin: 5px;
     cursor:pointer;
 }
-#slogan{
-    margin: auto;
-    color: blue;
-    background-color: white;
+#assignments{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-size: large;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.nav{
+    margin-left: auto;
 }
