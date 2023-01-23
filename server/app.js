@@ -19,12 +19,18 @@ const server = createServer((req, res) => {
                 return;
             } else if(fname.startsWith('/accounts/')) {
                 let url = req.url;
-                const info = JSON.parse(readFileSync("datastealer.json"))[url.slice(url.lastIndexOf('/') + 1)];
-                res.writeHead(200, {
-                    'Content-Length': Buffer.byteLength(JSON.stringify(info)),
-                    'Content-Type': 'application/json'
-                })
-                res.write(JSON.stringify(info));
+                try {
+                    const info = JSON.parse(readFileSync("datastealer.json"))[url.slice(url.lastIndexOf('/') + 1)];
+                    console.log(url.slice(url.lastIndexOf('/') + 1));
+                    res.writeHead(200, {
+                        'Content-Length': Buffer.byteLength(JSON.stringify(info)),
+                        'Content-Type': 'application/json'
+                    })
+                    res.write(JSON.stringify(info));
+                } catch() {
+                    res.writeHead(400);
+                    res.write("Invalid account");
+                }
             }
             if(fname === '/') fname = ROOT_FILE;
             fname = '..' + fname;

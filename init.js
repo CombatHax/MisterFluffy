@@ -1,4 +1,11 @@
-const ip = "0.0.0.0:3000";
+const ip = "0.0.0.0:80";
 const uuid = localStorage.getItem("UUID");
-const account = fetch(`/accounts/${uuid}`).then(res => res.json())
-console.log(account)
+let account;
+console.log(uuid);
+async function getAccount() {
+    let res = await fetch(`/accounts/${uuid}`).then(res => res.json()).then(data => data);
+    return res;
+}
+if(uuid != 'null' || uuid != null) {
+    account = getAccount();
+}
