@@ -27,7 +27,7 @@ const server = createServer((req, res) => {
                         'Content-Type': 'application/json'
                     })
                     res.write(JSON.stringify(info));
-                } catch() {
+                } catch {
                     res.writeHead(400);
                     res.write("Invalid account");
                 }
