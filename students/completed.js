@@ -11,7 +11,7 @@ console.log(assignment);
 let btn = assignment[3]
 
 function retry(){
-    window.location.replace("assignment.html?id=" + id);
+    window.location.replace("/students/assignment.html?id=" + id);
 }
 
 assignments = assignment

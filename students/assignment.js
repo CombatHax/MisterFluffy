@@ -53,5 +53,5 @@ function buttonclicked(button){
 }
 
 function submit(){
-    window.location.replace("index.html");
+    window.location.replace("/frontpage/index.html");
 }
